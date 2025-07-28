@@ -6,11 +6,11 @@ const NoteSchema = new mongoose.Schema({
         ref:"User",
         required:true
     },
-    note:{
+    content:{
         type:String,
         required:true
     }
 },{timestamps:true})
 
-const Note = mongoose.model("Note",NoteSchema);
+const Note = mongoose.models.Note || mongoose.model("Note",NoteSchema);
 export default Note;

@@ -7,7 +7,7 @@ const UserSchema = new mongoose.Schema(
             required: true,
             trim:true
         },
-        DOB:{
+        dob:{
             type:Date,
             required:true,
         },
@@ -16,12 +16,16 @@ const UserSchema = new mongoose.Schema(
             required:true,
             unique:true
         },
-        otp:{
-            type:String,
+        active:{
+            type:Boolean,
+            default:false,
+        },
+        token:{
+            type:String
         }
     },{timestamps:true}
 )
 
-const User = mongoose.model("User",UserSchema)
+const User = mongoose.models.User || mongoose.model("User",UserSchema)
 
 export default User;
