@@ -3,7 +3,7 @@
 
 A full-stack note-taking web application built with **Next.js 14 (App Router)**, **TypeScript**, **MongoDB**, and **JWT Authentication**, featuring **email + OTP login**, optional **Google login**, and a clean, mobile-friendly UI.
 
-> 🔗 [Live Demo](https://your-deployment-url.com)  
+> 🔗 [Live Demo](https://highway-assignment-kuel.vercel.app/)  
 > 🖼️ [Design Assets & UI Reference](https://hwdlte.com/RvqdLn)
 
 ---
