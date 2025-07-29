@@ -28,7 +28,10 @@
   "devDependencies": {
     "@eslint/eslintrc": "^3",
     "@tailwindcss/postcss": "^4",
+    "@types/jsonwebtoken": "^9.0.10",
     "@types/node": "^20",
+    "@types/nodemailer": "^6.4.17",
+    "@types/otp-generator": "^4.0.2",
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "eslint": "^9",

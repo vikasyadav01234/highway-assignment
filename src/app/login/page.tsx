@@ -55,6 +55,7 @@ export default function LoginPage() {
         setError(data.message || 'Invalid OTP');
       }
     } catch (err) {
+      console.error(err);
       setError('Something went wrong during OTP verification.');
     } finally {
       setLoading(false);

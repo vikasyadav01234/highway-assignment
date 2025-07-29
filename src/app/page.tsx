@@ -45,9 +45,9 @@ export default function HomePage() {
         {/* Developer Card */}
         <div className="bg-white rounded-2xl shadow-md p-6 hover:shadow-lg transition border">
           <h2 className="text-xl text-black font-semibold mb-2">👨‍💻 Developer Info</h2>
-          <p className="text-gray-700 mb-1"><span className="font-medium">Name:</span> Your Name</p>
-          <p className="text-gray-700 mb-1"><span className="font-medium">Email:</span> your@email.com</p>
-          <p className="text-gray-700 mb-1"><span className="font-medium">LinkedIn:</span> <a href="https://www.linkedin.com/in/vikas-yadav2/" target="_blank" className="text-blue-600 hover:underline">yourprofile</a></p>
+          <p className="text-gray-700 mb-1"><span className="font-medium">Name:</span> Vikas Yadav</p>
+          <p className="text-gray-700 mb-1"><span className="font-medium">Email:</span> yadav2911vikas@gmail.com.com</p>
+          <p className="text-gray-700 mb-1"><span className="font-medium">LinkedIn:</span> <a href="https://www.linkedin.com/in/vikas-yadav2/" target="_blank" className="text-blue-600 hover:underline">Vikas Yadav</a></p>
           <p className="text-gray-700"><span className="font-medium">Tech Stack:</span> Next.js, TypeScript, MongoDB</p>
         </div>
       </div>

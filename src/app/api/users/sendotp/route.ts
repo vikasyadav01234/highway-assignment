@@ -3,8 +3,8 @@ import { sendOTPToEmail } from "@/helpers/sendOtp";
 import { NextRequest, NextResponse } from "next/server";
 import {connectDb} from '@/dbConfig/dbConfig'
 
-connectDb();
 export async function POST(request:NextRequest){
+    await connectDb();
     try{
         const reqBody = await request.json();
         const {email} = reqBody;

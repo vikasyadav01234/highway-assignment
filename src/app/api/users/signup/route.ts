@@ -4,8 +4,8 @@ import { NextRequest,NextResponse } from "next/server";
 import OTP from "@/models/Otp"
 import jwt from "jsonwebtoken"
 
-connectDb();
 export async function POST(request:NextRequest){
+    await connectDb();
     try{
         const reqBody = await request.json()
         const {name,dob,email,otp} = reqBody;
@@ -43,10 +43,10 @@ export async function POST(request:NextRequest){
 
 
     }
-    catch(err:any){
+    catch(err:unknown){
         console.log(err);
         return NextResponse.json({
-            err:err.message
+            err:err
         },{status:500});
     }
 }

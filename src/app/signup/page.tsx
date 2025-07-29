@@ -12,10 +12,11 @@ interface ApiResponse {
   message: string;
   otp?: string;
   user?: {
-    id: number;
+    id: string;
     name: string;
     email: string;
   };
+  token?:any;
 }
 
 export default function SignupPage() {
@@ -50,10 +51,10 @@ export default function SignupPage() {
       setStep('verify-otp');
     } catch (error) {
       if (axios.isAxiosError(error)) {
-        if (error.response) {
+        if (error?.response) {
           const errorData = error.response.data as { message?: string };
           setError(errorData?.message || 'Server error occurred');
-        } else if (error.request) {
+        } else if (error?.request) {
           setError('Network error. Please check your connection.');
         } else {
           setError('Something went wrong. Please try again.');
@@ -79,26 +80,26 @@ export default function SignupPage() {
         dob: dateOfBirth,
         otp,
       });
-      router.push('/profile')
+      
 
       const data = response.data;
-
-      if (data.success) {
+      //console.log(data)
+      if (data) {
         setSuccessMessage(data.message || 'Signed up successfully!');
         e.preventDefault();
         localStorage.setItem('authToken', data.token);
         localStorage.setItem('userData', JSON.stringify(data.user));
-        
+        router.push('/profile')
         
       } else {
-        setError(data.message || 'Verification failed');
+        setError(data || 'Verification failed');
       }
     } catch (error) {
       if (axios.isAxiosError(error)) {
         if (error.response) {
           const errorData = error.response.data as { message?: string };
           setError(errorData?.message || 'Verification failed');
-        } else if (error.request) {
+        } else if (error?.request) {
           setError('Network error. Please check your connection.');
         } else {
           setError('Something went wrong. Please try again.');
@@ -137,7 +138,7 @@ export default function SignupPage() {
         if (error.response) {
           const errorData = error.response.data as { message?: string };
           setError(errorData?.message || 'Could not resend OTP');
-        } else if (error.request) {
+        } else if (error?.request) {
           setError('Network error. Please check your connection.');
         } else {
           setError('Something went wrong. Please try again.');

@@ -38,7 +38,7 @@ export default function ProfilePage() {
           Authorization: `Bearer ${token}`,
         },
       });
-      console.log(res)
+      //console.log(res)
       setNotes(res.data.notes);
     } catch (err) {
       console.error('Failed to load notes:', err);
@@ -68,7 +68,7 @@ export default function ProfilePage() {
   const handleDeleteNote = async (noteId: string) => {
     const token = localStorage.getItem('authToken');
     if (!token) return;
-    console.log(noteId)
+    //console.log(noteId)
     try {
       await axios.delete(`/api/users/notes/delete/${noteId}`, {
         headers: {

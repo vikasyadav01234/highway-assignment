@@ -5,7 +5,7 @@ import otpTemplate from "./Mail/OtpEmailTemplate";
 
 export const sendOTPToEmail= async (email:String):Promise<void>=>{
     let otp = otpGenerator.generate(6,{
-        upperCaseAlpjabets:false,
+        upperCaseAlphabets:false,
         lowerCaseAlphabets:false,
         specialChars:false,
     });
