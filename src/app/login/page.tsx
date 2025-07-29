@@ -5,6 +5,7 @@ import Link from 'next/link';
 import axios from 'axios';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
+import { ToastContainer,toast } from 'react-toastify';
 
 export default function LoginPage() {
   const [email, setEmail] = useState('');
@@ -25,12 +26,17 @@ export default function LoginPage() {
       const data = response.data;
       console.log(data)
       if (data) {
+        toast.success("Otp Sent For Login")
+        toast.success("Please Check Your Email For OTP");
         setOtpSent(true);
+
       } else {
         setError(data.message || 'Failed to send OTP');
+        toast.error("Failed to sent OTP")
       }
     } catch (err) {
       setError('Something went wrong while requesting OTP.');
+      toast.error("Failed to sent OTP")
     } finally {
       setLoading(false);
     }
@@ -50,13 +56,18 @@ export default function LoginPage() {
       if (data.token) {
         localStorage.setItem('authToken', data.token);
         localStorage.setItem('userData', JSON.stringify(data.user));
+        
+        toast.success("Successfully Login")
+        toast.success("Welcome TO Profile");
         router.push('/profile')
       } else {
         setError(data.message || 'Invalid OTP');
+        toast.error("Invalid OTP")
       }
     } catch (err) {
       console.error(err);
       setError('Something went wrong during OTP verification.');
+      toast.error("Failed to verify OTP")
     } finally {
       setLoading(false);
     }
@@ -159,6 +170,7 @@ export default function LoginPage() {
           </div>
         </div>
       </div>
+      <ToastContainer/>
     </div>
   );
 }

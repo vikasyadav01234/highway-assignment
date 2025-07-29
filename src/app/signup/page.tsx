@@ -5,7 +5,7 @@ import Link from 'next/link';
 import axios from 'axios';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
-
+import { ToastContainer,toast } from 'react-toastify';
 
 interface ApiResponse {
   success: boolean;
@@ -44,7 +44,7 @@ export default function SignupPage() {
         email,
         dob: dateOfBirth,
       });
-
+      toast.success("Otp Sent Check Your Email")
       if (response.data?.message) setSuccessMessage(response.data.message);
 
       setotpsent(true);
@@ -54,13 +54,17 @@ export default function SignupPage() {
         if (error?.response) {
           const errorData = error.response.data as { message?: string };
           setError(errorData?.message || 'Server error occurred');
+          toast.error('Server Error During Sending Otp')
         } else if (error?.request) {
           setError('Network error. Please check your connection.');
+          toast.error('Network Error During Sending Otp')
         } else {
           setError('Something went wrong. Please try again.');
+          toast.error('Something Went Wrong During Sending Otp')
         }
       } else {
         setError('Unexpected error occurred.');
+        toast.error('Unexpected Error During Sending Otp')
       }
     } finally {
       setLoading(false);
@@ -80,6 +84,7 @@ export default function SignupPage() {
         dob: dateOfBirth,
         otp,
       });
+      toast.success("User Created Successfully")
       
 
       const data = response.data;
@@ -90,22 +95,28 @@ export default function SignupPage() {
         localStorage.setItem('authToken', data.token);
         localStorage.setItem('userData', JSON.stringify(data.user));
         router.push('/profile')
+        toast.success("welcome to Profile")
         
       } else {
         setError(data || 'Verification failed');
+        toast.error("Something Went Wrong During Verification")
       }
     } catch (error) {
       if (axios.isAxiosError(error)) {
         if (error.response) {
           const errorData = error.response.data as { message?: string };
           setError(errorData?.message || 'Verification failed');
+          toast.error('Verification failed')
         } else if (error?.request) {
           setError('Network error. Please check your connection.');
+          toast.error('Network error. Please check your connection.');
         } else {
           setError('Something went wrong. Please try again.');
+          toast.error('Something went wrong. Please try again.');
         }
       } else {
         setError('Unexpected error occurred.');
+        toast.error('Unexpected error occurred.');
       }
     } finally {
       setLoading(false);
@@ -125,26 +136,33 @@ export default function SignupPage() {
         email,
         dob: dateOfBirth,
       });
+      toast.success("Otp Resend Successfully")
       setOtp('');
       setotpsent(true);
       setStep('verify-otp');
       if (response.data?.message) {
         setSuccessMessage(response.data.message || 'OTP resent successfully.');
+        
       } else {
         setSuccessMessage('OTP resent successfully.');
+
       }
     } catch (error) {
       if (axios.isAxiosError(error)) {
         if (error.response) {
           const errorData = error.response.data as { message?: string };
           setError(errorData?.message || 'Could not resend OTP');
+          toast.error("Somthing went wrong during resending otp")
         } else if (error?.request) {
           setError('Network error. Please check your connection.');
+          toast.error('Network error. Please check your connection.');
         } else {
           setError('Something went wrong. Please try again.');
+          toast.error('Something went wrong. Please try again.');
         }
       } else {
         setError('Unexpected error occurred.');
+        toast.error('Unexpected error occurred.');
       }
     } finally {
       setLoading(false);
@@ -298,6 +316,8 @@ export default function SignupPage() {
           </div>
         </div>
       </div>
+      <ToastContainer/>
     </div>
+    
   );
 }
